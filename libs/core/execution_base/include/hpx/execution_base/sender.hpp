@@ -115,9 +115,9 @@ namespace hpx { namespace execution { namespace experimental {
             return true;
         }
 
-        template <typename Sender, typename Env>
+        template <typename Sender>
         constexpr bool specialized(
-            typename sender_traits<Sender, Env>::__unspecialized*)
+            typename sender_traits<Sender>::__unspecialized*)
         {
             return false;
         }
@@ -147,8 +147,8 @@ namespace hpx { namespace execution { namespace experimental {
 
         template <typename S, typename R>
         struct has_member_connect<S, R,
-            hpx::util::always_void_t<decltype(std::declval<S>().connect(
-                std::declval<R>()))>> : std::true_type
+            hpx::util::always_void_t<decltype(
+                std::declval<S>().connect(std::declval<R>()))>> : std::true_type
         {
         };
     }    // namespace detail
